@@ -1,3 +1,23 @@
 genessis_user_homepage:
     path:     /hello/{name}
     defaults: { _controller: GenessisUserBundle:Default:index }
+
+genessis_user_index:
+  path: /user/index
+  defaults: { _controller: GenessisUserBundle:User:index }
+
+genessis_user_add:
+  path: /user/add
+  defaults: { _controller: GenessisUserBundle:User:add }
+
+genessis_user_edit:
+  path: /user/edit/{id}
+  defaults: { _controller: GenessisUserBundle:User:edit }
+
+genessis_user_view:
+  path: /user/view/{id}
+  defaults: { _controller: GenessisUserBundle:User:view }
+
+genessis_user_delete:
+  path: /user/delete/{id}
+  defaults: { _controller: GenessisUserBundle:User:delete } 
