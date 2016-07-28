@@ -10,7 +10,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {{ include('menu.html.twig') }}
+        {% endblock %}
         {% block javascripts %}
             <script src="{{ asset('public/js/jquery-2.2.4.js') }}"></script>
             <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
