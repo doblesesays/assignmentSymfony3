@@ -38,6 +38,21 @@ class UserController extends Controller
     			'method' => 'POST'
     		));
     	return $form;
+    }
+
+    public function createAction(Request $request){
+    	$user = new User();
+    	$form = $this->createCreateForm($user);
+    	$form->handleRequest($request);
+
+    	if($form->isValid()){
+    		$em = $this->getDoctrine()->getManager();
+    		$em->persist($user);
+    		$em->flush();
+    		
+    		return $this->redirectToRoute('genessis_user_index');
+    	}
+    	return $this->render('GenessisUserBundle:User:add.html.twig', array('form'=>$form->createView()));
     } 
 
     public function viewAction($id){
