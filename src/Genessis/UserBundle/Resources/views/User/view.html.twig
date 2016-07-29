@@ -3,6 +3,7 @@
 view view
 {% endblock %}
 {% block body %}
+{{ parent() }}
 <h2>User, {{user.firstName}}</h2>
 <table border="1">
 	<tr>

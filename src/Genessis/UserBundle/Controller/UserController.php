@@ -3,6 +3,10 @@
 namespace Genessis\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Genessis\UserBundle\Entity\User;
+use Genessis\UserBundle\Form\UserType;
 
 class UserController extends Controller
 {
@@ -20,6 +24,21 @@ class UserController extends Controller
 
        	return $this->render('GenessisUserBundle:User:index.html.twig', array('users'=>$users));
     }
+
+    public function addAction(){
+    	$user = new User();
+		$form = $this->createCreateForm($user);
+
+		return $this->render('GenessisUserBundle:User:add.html.twig', array('form'=>$form->createView()));
+    }
+
+    private function createCreateForm(User $entity){
+    	$form = $this->createForm(UserType::class, $entity, array(
+    			'action' => $this->generateUrl('genessis_user_create'),
+    			'method' => 'POST'
+    		));
+    	return $form;
+    } 
 
     public function viewAction($id){
     	$repository = $this->getDoctrine()->getRepository('GenessisUserBundle:User');

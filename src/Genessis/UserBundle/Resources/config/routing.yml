@@ -10,6 +10,11 @@ genessis_user_add:
   path: /user/add
   defaults: { _controller: GenessisUserBundle:User:add }
 
+genessis_user_create:
+  path: /user/create
+  defaults: { _controller: GenessisUserBundle:User:create }
+  methods: POST
+
 genessis_user_edit:
   path: /user/edit/{id}
   defaults: { _controller: GenessisUserBundle:User:edit }
