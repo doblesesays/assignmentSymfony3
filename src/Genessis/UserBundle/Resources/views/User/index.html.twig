@@ -4,6 +4,7 @@ index view
 {% endblock %}
 {% block body %}
 {{ parent() }}
+{{ include('GenessisUserBundle:User:messages/success.html.twig') }}
 <div class="container">
 	<div class="col-md-12">
 		<div class="page-header margin-none">

@@ -117,6 +117,10 @@
                 <source>Delete</source>
                 <target>Eliminar</target>
             </trans-unit>
+            <trans-unit id="28">
+                <source>The user has been created.</source>
+                <target>El usuario ha sido creado.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -57,6 +57,9 @@ class UserController extends Controller
     		$em->persist($user);
     		$em->flush();
 
+    		$successMessage = $this->get('translator')->trans('The user has been created.');
+    		$this->addFlash('mensaje', $successMessage);
+
     		return $this->redirectToRoute('genessis_user_index');
     	}
     	return $this->render('GenessisUserBundle:User:add.html.twig', array('form'=>$form->createView()));
