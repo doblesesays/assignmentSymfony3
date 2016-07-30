@@ -10,19 +10,23 @@ use Genessis\UserBundle\Form\UserType;
 
 class UserController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('GenessisUserBundle:User')->findAll();
+        // $users = $em->getRepository('GenessisUserBundle:User')->findAll();
 
-        // $res = 'Lista de usuarios: <br/>';
-        // foreach ($users as $user) {
-        // 	$res .= 'Usuario: '. $user->getUsername() . ' - Email: ' . $user->getEmail() . '<br/>';
-       	// }
-       	// return new Response($res);
+       	$dql = "SELECT u FROM GenessisUserBundle:User u";
+       	$users = $em->createQuery($dql);
 
-       	return $this->render('GenessisUserBundle:User:index.html.twig', array('users'=>$users));
+       	$paginator = $this->get('knp_paginator');
+       	$pagination = $paginator->paginate(
+       		$users,
+       		$request->query->getInt('page', 1),
+       		10
+       	);
+
+       	return $this->render('GenessisUserBundle:User:index.html.twig', array('pagination'=>$pagination));
     }
 
     public function addAction(){
