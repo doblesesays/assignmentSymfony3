@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <!-- traduciendo user form -->
+            <!-- add.html.twig -->
+            <trans-unit id="1">
+                <source>New user</source>
+                <target>Crear usuario</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Username</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>First name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Last name</source>
+                <target>Apellido</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Email</source>
+                <target>Correo electrónico</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Password</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Role</source>
+                <target>Rol</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Your username</source>
+                <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Your first name</source>
+                <target>Ingrese su nombre</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Your last name</source>
+                <target>Ingrese su apellido</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Your email</source>
+                <target>Ingrese su correo electrónico</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Your password</source>
+                <target>Ingrese su contraseña</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Select a role</source>
+                <target>Elegir un rol</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Administrator</source>
+                <target>Administrador</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>User</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Active</source>
+                <target>Activo</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Create user</source>
+                <target>Crear usuario</target>
+            </trans-unit>
+            <!-- traduciendo navbar -->
+            <!-- menu.html.twig -->
+            <trans-unit id="18">
+                <source>Assignments</source>
+                <target>Asignaciones</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Users</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>List users</source>
+                <target>Listar usuarios</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>New user</source>
+                <target>Nuevo usuario</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
