@@ -10,7 +10,7 @@ add view
 			<div class="page-header">
 				<h2>New user</h2>
 			</div>
-			{{ form_start(form, { 'attr': {'role': 'form'} }) }}
+			{{ form_start(form, { 'attr': { 'novalidate':'novalidate', 'role': 'form'} }) }}
 				<div class="form-group">
 					{{ form_label(form.username) }}
 					{{ form_widget(form.username, { 'attr' : {'class':'form-control', 'placeholder':'Your username'} }) }}
@@ -44,7 +44,7 @@ add view
 				<div class="checkbox">
 					<label>
 						{{ form_widget(form.isActive)}}Active
-						<span class="text-danger">{{ form_errors(form.role) }}</span>
+						<span class="text-danger">{{ form_errors(form.isActive) }}</span>
 					</label>
 				</div>
 				</fieldset>

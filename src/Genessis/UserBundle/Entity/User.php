@@ -4,13 +4,16 @@ namespace Genessis\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="Genessis\UserBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
  */
 class User implements UserInterface
 {
@@ -27,6 +30,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=50)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -34,6 +38,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -41,6 +46,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
@@ -48,6 +54,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
@@ -55,6 +63,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -62,6 +71,8 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(name="role", type="string", columnDefinition="ENUM('ROLE_ADMIN', 'ROLE_USER')", length=50)
+     * @Assert\Choice(choices = {"ROLE_ADMIN", "ROLE_USER"})
+     * @Assert\NotBlank()
      */
     private $role;
 
