@@ -90,6 +90,33 @@
                 <source>New user</source>
                 <target>Nuevo usuario</target>
             </trans-unit>
+            <!-- traduciendo index (list users)
+            OJO la mayor parte se reutiliza de la traduccion de add.html.twig-->
+            <!-- index.html.twig -->
+            <trans-unit id="22">
+                <source>Created</source>
+                <target>Creado</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Updated</source>
+                <target>Modificado</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>View</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
