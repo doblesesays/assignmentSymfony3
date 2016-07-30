@@ -25,4 +25,11 @@ genessis_user_view:
 
 genessis_user_delete:
   path: /user/delete/{id}
-  defaults: { _controller: GenessisUserBundle:User:delete } 
+  defaults: { _controller: GenessisUserBundle:User:delete }
+
+genessis_user_redirect_add:
+  path: /user/create
+  defaults:
+    _controller: GenessisUserBundle:User:add
+    path: /user/add
+    permanent: true
