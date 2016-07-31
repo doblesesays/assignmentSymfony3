@@ -16,7 +16,7 @@ class UserController extends Controller
 
         // $users = $em->getRepository('GenessisUserBundle:User')->findAll();
 
-       	$dql = "SELECT u FROM GenessisUserBundle:User u";
+       	$dql = "SELECT u FROM GenessisUserBundle:User u ORDER BY u.id DESC";
        	$users = $em->createQuery($dql);
 
        	$paginator = $this->get('knp_paginator');
