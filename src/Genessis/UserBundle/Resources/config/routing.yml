@@ -33,6 +33,8 @@ genessis_user_view:
 genessis_user_delete:
   path: /user/delete/{id}
   defaults: { _controller: GenessisUserBundle:User:delete }
+  requirements:
+    _method:  POST|DELETE
 
 #No lo necedite por el requirements
 # genessis_user_redirect_add:

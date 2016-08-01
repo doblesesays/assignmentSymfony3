@@ -152,7 +152,7 @@
                 <target>El usuario ha sido modificado.</target>
             </trans-unit>
             <!-- traduciendo user view -->
-            <!-- view.html.twig -->
+            <!-- view.html.twig y form.html.twig -->
             <trans-unit id="36">
                 <source>Enabled</source>
                 <target>Habilitado</target>
@@ -160,6 +160,14 @@
             <trans-unit id="37">
                 <source>Disabled</source>
                 <target>Deshabilitado</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Delete user</source>
+                <target>Eliminar usuario</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>The user has been deleted.</source>
+                <target>El usuario ha sido eliminado.</target>
             </trans-unit>
         </body>
     </file>

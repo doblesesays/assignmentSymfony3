@@ -156,6 +156,38 @@ class UserController extends Controller
     		throw $this->createNotFoundException($messageException);
     	}
 
-    	return $this->render('GenessisUserBundle:User:view.html.twig', array('user'=>$user));
+    	$deleteForm = $this->createDeleteForm($user);
+
+    	return $this->render('GenessisUserBundle:User:view.html.twig', array('user'=>$user, 'delete_form'=>$deleteForm->createView()));
     }
+
+    private function createDeleteForm($user){
+    	return $this->createFormBuilder()
+    		->setAction($this->generateUrl('genessis_user_delete', array('id'=>$user->getId())))
+    		->setMethod('DELETE')
+    		->getForm();
+    }
+
+   	public function deleteAction($id, Request $request){
+   		$em = $this->getDoctrine()->getManager();
+   		$user = $em->getRepository('GenessisUserBundle:User')->find($id);
+
+   		if(!$user){
+    		$messageException = $this->get('translator')->trans('User not found.');
+    		throw $this->createNotFoundException($messageException);
+    	}
+
+    	$form = $this->createDeleteForm($user);
+    	$form->handleRequest($request);
+
+    	if($form->isSubmitted() && $form->isValid()){
+    		$em->remove($user);
+    		$em->flush();
+
+    		$successMessage = $this->get('translator')->trans('The user has been deleted.');
+    		$this->addFlash('mensaje', $successMessage);
+
+    		return $this->redirectToRoute('genessis_user_index');
+    	}
+   	}
 }

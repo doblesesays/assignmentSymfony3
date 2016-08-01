@@ -82,6 +82,9 @@ view view
 	        	{{ 'Edit user'|trans }}
 			 </a>
 		</p>
+		<p>
+			{{ include('GenessisUserBundle:User:forms/form.html.twig', {form:delete_form}) }}
+		</p>
     </div>
 </div>
 {% endblock %}
