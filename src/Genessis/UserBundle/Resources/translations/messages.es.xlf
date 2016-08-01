@@ -169,6 +169,10 @@
                 <source>The user has been deleted.</source>
                 <target>El usuario ha sido eliminado.</target>
             </trans-unit>
+            <trans-unit id="40">
+                <source>Are you sure?</source>
+                <target>Está seguro?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

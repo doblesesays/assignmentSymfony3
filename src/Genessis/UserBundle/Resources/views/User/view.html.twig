@@ -83,7 +83,7 @@ view view
 			 </a>
 		</p>
 		<p>
-			{{ include('GenessisUserBundle:User:forms/form.html.twig', {form:delete_form}) }}
+			{{ include('GenessisUserBundle:User:forms/form.html.twig', {form:delete_form, message:'Are you sure?'|trans}) }}
 		</p>
     </div>
 </div>
