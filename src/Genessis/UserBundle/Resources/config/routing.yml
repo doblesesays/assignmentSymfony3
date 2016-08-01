@@ -13,11 +13,18 @@ genessis_user_add:
 genessis_user_create:
   path: /user/create
   defaults: { _controller: GenessisUserBundle:User:create }
-  methods: POST
+  requirements:
+    _method:  POST
 
 genessis_user_edit:
   path: /user/edit/{id}
   defaults: { _controller: GenessisUserBundle:User:edit }
+
+genessis_user_update:
+  path: /user/update/{id}
+  defaults: { _controller: GenessisUserBundle:User:update }
+  requirements:
+    _method:  POST|GET
 
 genessis_user_view:
   path: /user/view/{id}
@@ -27,9 +34,10 @@ genessis_user_delete:
   path: /user/delete/{id}
   defaults: { _controller: GenessisUserBundle:User:delete }
 
-genessis_user_redirect_add:
-  path: /user/create
-  defaults:
-    _controller: GenessisUserBundle:User:add
-    path: /user/add
-    permanent: true
+#No lo necedite por el requirements
+# genessis_user_redirect_add:
+#   path: /user/create
+#   defaults:
+#     _controller: GenessisUserBundle:User:add
+#     path: /user/add
+#     permanent: true
