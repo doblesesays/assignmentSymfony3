@@ -150,7 +150,12 @@ class UserController extends Controller
     public function viewAction($id){
     	$repository = $this->getDoctrine()->getRepository('GenessisUserBundle:User');
     	$user = $repository->find($id);
-    	// return new Response('Usuario: ' . $user->getUsername() . 'con email ' . $user->getEmail());
+    	
+    	if(!$user){
+    		$messageException = $this->get('translator')->trans('User not found.');
+    		throw $this->createNotFoundException($messageException);
+    	}
+
     	return $this->render('GenessisUserBundle:User:view.html.twig', array('user'=>$user));
     }
 }
