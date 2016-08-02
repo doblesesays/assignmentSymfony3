@@ -173,6 +173,13 @@
                 <source>Are you sure?</source>
                 <target>Está seguro?</target>
             </trans-unit>
+            <!-- traduciendo index -->
+            <!-- index.html.twig -->
+            <!-- delete with ajax -->
+            <trans-unit id="41">
+                <source>The user could not be deleted.</source>
+                <target>El usuario no ha sido eliminado.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
