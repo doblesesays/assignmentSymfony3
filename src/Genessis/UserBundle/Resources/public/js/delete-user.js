@@ -23,6 +23,7 @@ $(document).ready(function(){
 						row.fadeOut();
 						$('#message').removeClass('hidden');
 						$('#user-message').text(result.message);
+						$('.alert-danger').addClass('hidden');
 
 						var totalUsers = $('#total').text();
 						if($.isNumeric(totalUsers)){
@@ -33,6 +34,7 @@ $(document).ready(function(){
 					}else{
 						$('#message-danger').removeClass('hidden');
 						$('#user-message-danger').text(result.message);
+						$('.alert-success').addClass('hidden');
 					}
 				}).fail(function(){
 					alert('ERROR');
