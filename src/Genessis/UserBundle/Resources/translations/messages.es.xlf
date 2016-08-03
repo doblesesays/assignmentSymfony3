@@ -180,6 +180,21 @@
                 <source>The user could not be deleted.</source>
                 <target>El usuario no ha sido eliminado.</target>
             </trans-unit>
+            <!-- traduciendo index -->
+            <!-- index.html.twig -->
+            <!-- form para el elasticSearch -->
+            <trans-unit id="42">
+                <source>Search user</source>
+                <target>Buscar usuario</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Search</source>
+                <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>No search results</source>
+                <target>No se encontraron resultados</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
