@@ -80,3 +80,21 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+# Elastic Search
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                user:
+                    mappings:
+                        firstName: ~
+                        lastName: ~
+                    persistence:
+                        driver: orm
+                        model: Genessis\UserBundle\Entity\User
+                        provider: ~
+                        listener: ~
+                        finder: ~            
