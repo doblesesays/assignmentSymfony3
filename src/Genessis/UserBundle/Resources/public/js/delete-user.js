@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	$('.btn-delete').click(function(e){
 		e.preventDefault();
+		$('.alert-danger').addClass('hidden');
+		$('.alert-success').addClass('hidden');
 
 		var row = $(this).parents('tr');
 		var id = row.data('id');
@@ -23,7 +25,6 @@ $(document).ready(function(){
 						row.fadeOut();
 						$('#message').removeClass('hidden');
 						$('#user-message').text(result.message);
-						$('.alert-danger').addClass('hidden');
 
 						var totalUsers = $('#total').text();
 						if($.isNumeric(totalUsers)){
@@ -34,7 +35,6 @@ $(document).ready(function(){
 					}else{
 						$('#message-danger').removeClass('hidden');
 						$('#user-message-danger').text(result.message);
-						$('.alert-success').addClass('hidden');
 					}
 				}).fail(function(){
 					alert('ERROR');
