@@ -30,7 +30,7 @@ class UserController extends Controller
        	$paginator = $this->get('knp_paginator');
        	$pagination = $paginator->paginate(
        		$users, $request->query->getInt('page', 1),
-       		10
+       		4
        	);
 
        	$deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'genessis_user_delete');

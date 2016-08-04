@@ -3,12 +3,14 @@
 namespace Genessis\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Task
  *
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="Genessis\UserBundle\Repository\TaskRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Task
 {
@@ -16,6 +18,7 @@ class Task
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+    * @Assert\NotBlank()
     */
     protected $user;
 
@@ -32,6 +35,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -39,6 +43,7 @@ class Task
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -192,6 +197,21 @@ class Task
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue(){
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue(){
+        $this->updatedAt = new \DateTime();
     }
 
     /**
