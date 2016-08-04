@@ -1,0 +1,45 @@
+genessis_user_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: GenessisUserBundle:Default:index }
+
+genessis_user_index:
+  path: /index
+  defaults: { _controller: GenessisUserBundle:User:index }
+
+genessis_user_add:
+  path: /add
+  defaults: { _controller: GenessisUserBundle:User:add }
+
+genessis_user_create:
+  path: /create
+  defaults: { _controller: GenessisUserBundle:User:create }
+  requirements:
+    _method:  POST
+
+genessis_user_edit:
+  path: /edit/{id}
+  defaults: { _controller: GenessisUserBundle:User:edit }
+
+genessis_user_update:
+  path: /update/{id}
+  defaults: { _controller: GenessisUserBundle:User:update }
+  requirements:
+    _method:  POST|PUT
+
+genessis_user_view:
+  path: /view/{id}
+  defaults: { _controller: GenessisUserBundle:User:view }
+
+genessis_user_delete:
+  path: /delete/{id}
+  defaults: { _controller: GenessisUserBundle:User:delete }
+  requirements:
+    _method:  POST|DELETE
+
+#No lo necedite por el requirements
+# genessis_user_redirect_add:
+#   path: /user/create
+#   defaults:
+#     _controller: GenessisUserBundle:User:add
+#     path: /user/add
+#     permanent: true

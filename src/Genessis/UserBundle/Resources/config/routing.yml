@@ -1,45 +1,7 @@
-genessis_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: GenessisUserBundle:Default:index }
+genessis_user_user:
+  resource: "@GenessisUserBundle/Resources/config/routes/user.yml"
+  prefix: /user
 
-genessis_user_index:
-  path: /user/index
-  defaults: { _controller: GenessisUserBundle:User:index }
-
-genessis_user_add:
-  path: /user/add
-  defaults: { _controller: GenessisUserBundle:User:add }
-
-genessis_user_create:
-  path: /user/create
-  defaults: { _controller: GenessisUserBundle:User:create }
-  requirements:
-    _method:  POST
-
-genessis_user_edit:
-  path: /user/edit/{id}
-  defaults: { _controller: GenessisUserBundle:User:edit }
-
-genessis_user_update:
-  path: /user/update/{id}
-  defaults: { _controller: GenessisUserBundle:User:update }
-  requirements:
-    _method:  POST|GET
-
-genessis_user_view:
-  path: /user/view/{id}
-  defaults: { _controller: GenessisUserBundle:User:view }
-
-genessis_user_delete:
-  path: /user/delete/{id}
-  defaults: { _controller: GenessisUserBundle:User:delete }
-  requirements:
-    _method:  POST|DELETE
-
-#No lo necedite por el requirements
-# genessis_user_redirect_add:
-#   path: /user/create
-#   defaults:
-#     _controller: GenessisUserBundle:User:add
-#     path: /user/add
-#     permanent: true
+genessis_user_task:
+  resource: "@GenessisUserBundle/Resources/config/routes/task.yml"
+  prefix: /task
