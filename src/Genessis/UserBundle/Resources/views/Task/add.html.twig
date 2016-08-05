@@ -11,6 +11,7 @@ add task view
 					<h2>{{ 'New Task'|trans }}</h2>
 				</div>
 				{{ form_start(form, {'attr':{'role':'form', 'novalidate':'novalidate'}}) }}
+					<h4 class="text-danger">{{ form_errors(form) }}</h4>
 					<fieldset>
 						<div class="form-group">
 							{{ form_label(form.title) }}

@@ -257,6 +257,38 @@
                 <source>Finish</source>
                 <target>Terminado</target>
             </trans-unit>
+            <!-- traduciendo view task -->
+            <!-- task/view.html.twig -->
+            <trans-unit id="61">
+                <source>Edit task</source>
+                <target>Editar tarea</target>
+            </trans-unit>
+            <!-- traduciendo edit task -->
+            <!-- task/edit.html.twig -->
+            <trans-unit id="62">
+                <source>Update task</source>
+                <target>Actualizar tarea</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>The task does not exist.</source>
+                <target>La tarea no existe</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>Task not found</source>
+                <target>Tarea no encontrada</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>The task has been modified</source>
+                <target>La tarea ha sido modificada</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Delete task</source>
+                <target>Eliminar tarea</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>The task has been deleted</source>
+                <target>La tarea ha sido eliminada</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

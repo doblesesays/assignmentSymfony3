@@ -51,9 +51,98 @@ class TaskController extends Controller
 			$em->persist($task);
 			$em->flush();
 
-			$this->addFlash('mensaje', 'The task has been created.');
+			$message = $this->get('translator')->trans('The task has been created.');
+			$this->addFlash('mensaje', $message);
 			return $this->redirectToRoute('genessis_task_index');
 		}
 		return $this->render('GenessisUserBundle:Task:add.html.twig', array('form'=>$form->createView()));
+	}
+
+	public function viewAction($id){
+		$task = $this->getDoctrine()->getRepository('GenessisUserBundle:Task')->find($id);
+
+		if(!$task){
+			$message = $this->get('translator')->trans('The task does not exist.');
+			throw $this->createNotFoundException($message);
+		}
+
+		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
+
+		$user = $task->getUser();
+
+		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'delete_form'=>$deleteForm->createView()));
+	}
+
+	public function editAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$task = $em->getRepository('GenessisUserBundle:Task')->find($id);
+
+		if(!$task){
+			$message = $this->get('translator')->trans('Task not found');
+			throw $this->createNotFoundException($message);
+		}
+
+		$form = $this->createEditForm($task);
+
+		return $this->render('GenessisUserBundle:Task:edit.html.twig', array('task'=>$task, 'form'=>$form->createView()));
+	}
+
+	private function createEditForm(Task $entity){
+		$form = $this->createForm(TaskType::class, $entity, array(
+			'action'=> $this->generateUrl('genessis_task_update', array('id'=>$entity->getId())),
+			'method'=>'PUT'
+		));
+		return $form;
+	}
+
+	public function updateAction($id, Request $request){
+		$em = $this->getDoctrine()->getManager();
+		$task = $em->getRepository('GenessisUserBundle:Task')->find($id);
+
+		if(!$task){
+			$message = $this->get('translator')->trans('Task not found');
+			throw $this->createNotFoundException($message);
+		}
+		$form = $this->createEditForm($task);
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() and $form->isValid()){
+			$task->setStatus(0);
+			$em->flush();
+
+			$message = $this->get('translator')->trans('The task has been modified');
+			$this->addFlash('mensaje', $message);
+			return $this->redirectToRoute('genessis_task_edit', array('id'=>$task->getId()));
+		}
+		$this->render('GenessisUserBundle:Task:edit.html.twig', array('task'=>$task, 'form'=>$form->createView()));
+	}
+
+	public function deleteAction(Request $request, $id){
+		$em = $this->getDoctrine()->getManager();
+		$task = $em->getRepository('GenessisUserBundle:Task')->find($id);
+
+		if(!$task){
+			$message = $this->get('translator')->trans('Task not found');
+			throw $this->createNotFoundException($message);
+		}
+		$form = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() and $form->isValid()){
+			$em->remove($task);
+			$em->flush();
+
+			$message = $this->get('translator')->trans('The task has been deleted');
+			$this->addFlash('mensaje', $message);
+
+			return $this->redirectToRoute('genessis_task_index');
+		}
+	}
+
+	private function createCustomForm($id, $method, $route){
+		return $this->createFormBuilder()
+			->setAction($this->generateUrl($route, array('id'=>$id)))
+			->setMethod($method)
+			->getForm();
 	}
 }
