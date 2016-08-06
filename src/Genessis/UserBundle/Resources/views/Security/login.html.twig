@@ -10,12 +10,12 @@ login view
 {{ parent() }}
 	<div class="container">
 		<form action="{{ path('genessis_user_login_check') }}" method="post" class="form-signin">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">{{'Please sign in'|trans}}</h2>
 
 			{% if error %}
 				<div class="text-danger">
 					<p>
-						<strong>{{ error.messageKey }}</strong>
+						<strong>{{ error.messageKey|trans }}</strong>
 					</p>
 				</div>
 			{% endif %}
@@ -28,7 +28,7 @@ login view
 
 			<input type="hidden" name="_target_path" value="genessis_user_homepage">
 
-			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+			<button type="submit" class="btn btn-lg btn-primary btn-block">{{'Sign in'|trans}}</button>
 		</form>
 	</div>
 {% endblock %}

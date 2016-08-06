@@ -289,6 +289,28 @@
                 <source>The task has been deleted</source>
                 <target>La tarea ha sido eliminada</target>
             </trans-unit>
+            <!-- traduciendo nav y home y login para authe and autho -->
+            <!-- home.html.twig -->
+            <trans-unit id="68">
+                <source>Logout</source>
+                <target>Salir</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>Welcome</source>
+                <target>Bienvenido</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Please sign in</source>
+                <target>Ingresar</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>Invalid credentials.</source>
+                <target>Datos inválidos.</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Sign in</source>
+                <target>Entrar</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
