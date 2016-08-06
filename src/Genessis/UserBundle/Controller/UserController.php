@@ -13,6 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class UserController extends Controller
 {
+
+	public function homeAction(){
+		return $this->render('GenessisUserBundle:User:home.html.twig');
+	}
+
     public function indexAction(Request $request)
     {
 

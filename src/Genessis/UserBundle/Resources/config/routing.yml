@@ -5,3 +5,20 @@ genessis_user_user:
 genessis_user_task:
   resource: "@GenessisUserBundle/Resources/config/routes/task.yml"
   prefix: /task
+
+# AUTHENTICATION
+
+genessis_user_homepage:
+    path:     /
+    defaults: { _controller: GenessisUserBundle:User:home }
+
+genessis_user_login:
+    path:     /login
+    defaults: { _controller: GenessisUserBundle:Security:login }
+
+genessis_user_login_check:
+    path:     /login_check
+    defaults: { _controller: GenessisUserBundle:Security:loginCheck }
+
+genessis_user_logout:
+    path:     /logout
