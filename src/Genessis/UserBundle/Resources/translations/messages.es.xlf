@@ -311,6 +311,28 @@
                 <source>Sign in</source>
                 <target>Entrar</target>
             </trans-unit>
+            <trans-unit id="73">
+                <source>My tasks</source>
+                <target>Mis tareas</target>
+            </trans-unit>
+            <!-- traduciendo task custom -->
+            <!-- custom.html.twig -->
+            <trans-unit id="74">
+                <source>No tasks</source>
+                <target>No tiene tareas asignadas</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>Finish task</source>
+                <target>Finalizar</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>The task has been finish.</source>
+                <target>La tarea se ha finalizado.</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>The task was already finished.</source>
+                <target>La tarea ya se ha finalizado.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

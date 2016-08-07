@@ -45,17 +45,19 @@ view task view
 				<br>
 			</dl>
 		</div>
-		<div class="col-md-3">
-			<h3>{{'Actions'|trans}}:</h3>
-			<p>
-				<a href="{{ path('genessis_task_edit', {id:task.id}) }}" class="btn btn-primary btn-lg btn-block">
-					<span class="glyphicon glyphicon-edit"></span>
-					{{'Edit task'|trans}}
-				</a>
-			</p>
-			<p>
-				{{ include('GenessisUserBundle:Task:forms/form.html.twig', {form:delete_form, message:'Are you sure?'|trans}) }}
-			</p>
-		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="col-md-3">
+				<h3>{{'Actions'|trans}}:</h3>
+				<p>
+					<a href="{{ path('genessis_task_edit', {id:task.id}) }}" class="btn btn-primary btn-lg btn-block">
+						<span class="glyphicon glyphicon-edit"></span>
+						{{'Edit task'|trans}}
+					</a>
+				</p>
+				<p>
+					{{ include('GenessisUserBundle:Task:forms/form.html.twig', {form:delete_form, message:'Are you sure?'|trans}) }}
+				</p>
+			</div>
+		{% endif %}
 	</div>
 {% endblock %}

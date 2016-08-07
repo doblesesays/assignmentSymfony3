@@ -32,6 +32,16 @@ genessis_task_delete:
     requirements:
         _method:  POST|DELETE
 
+genessis_task_custom:
+    path: /custom
+    defaults: { _controller: GenessisUserBundle:Task:custom }
+
+genessis_task_process:
+    path: /process/{id}
+    defaults: { _controller: GenessisUserBundle:Task:process }
+    requirements:
+        _method:  POST|PUT        
+
 # genessis_task_redirect_add:
 #     path: /create
 #     defaults:

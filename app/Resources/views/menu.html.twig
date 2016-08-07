@@ -30,6 +30,11 @@
                         </ul>
                     </li>
                 {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                    <li>
+                        <a href="{{ path('genessis_task_custom') }}">{{'My tasks'|trans}}</a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
