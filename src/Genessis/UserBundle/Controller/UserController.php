@@ -10,6 +10,8 @@ use Genessis\UserBundle\Form\UserType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Genessis\UserBundle\Entity\Task;
+
 
 class UserController extends Controller
 {
@@ -158,7 +160,8 @@ class UserController extends Controller
     	return $currentPass;
     }
 
-    public function viewAction($id){
+    public function viewAction($id, Request $request){
+    	//RECUPERO Y VALIDO EL USER
     	$repository = $this->getDoctrine()->getRepository('GenessisUserBundle:User');
     	$user = $repository->find($id);
     	
@@ -167,9 +170,20 @@ class UserController extends Controller
     		throw $this->createNotFoundException($messageException);
     	}
 
+    	//RECUPERO Y PAGINO LAS TAREAS DEL USER
+    	$repositoryTask = $this->getDoctrine()->getRepository('GenessisUserBundle:Task');
+    	$tasks = $repositoryTask->findByUser($user->getId());
+
+    	$paginator = $this->get('knp_paginator');
+    	$pagination = $paginator->paginate(
+    		$tasks,
+    		$request->query->getInt('page', 1),
+    		3
+    	);
+
     	$deleteForm = $this->createCustomForm($user->getId(), 'DELETE', 'genessis_user_delete');
 
-    	return $this->render('GenessisUserBundle:User:view.html.twig', array('user'=>$user, 'delete_form'=>$deleteForm->createView()));
+    	return $this->render('GenessisUserBundle:User:view.html.twig', array('user'=>$user, 'pagination'=>$pagination, 'delete_form'=>$deleteForm->createView()));
     }
 
    	public function deleteAction($id, Request $request){

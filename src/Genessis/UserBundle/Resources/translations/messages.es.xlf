@@ -331,7 +331,15 @@
             </trans-unit>
             <trans-unit id="77">
                 <source>The task was already finished.</source>
-                <target>La tarea ya se ha finalizado.</target>
+                <target>La tarea ya se habia finalizado.</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>Task for the user </source>
+                <target>Tareas para el usuario </target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>No tasks asigned</source>
+                <target>Sin tareas asignadas</target>
             </trans-unit>
         </body>
     </file>
