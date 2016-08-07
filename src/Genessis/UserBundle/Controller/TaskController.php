@@ -60,16 +60,23 @@ class TaskController extends Controller
 				$em->flush();
 
 				if($request->isXMLHttpRequest()){
+
+					$message = $this->get('translator')->trans('The task has been finish.');
+
 					return new response(
-						json_encode(array('processed'=>1)),
+						json_encode(array('processed'=>1, 'message'=>$message)),
 						200,
 						array('Content-Type'=>'application/json')
 					);
 				}
 			}else{
+
 				if($request->isXMLHttpRequest()){
+
+					$message = $this->get('translator')->trans('The task was already finished.');
+
 					return new response(
-						json_encode(array('processed'=>0)),
+						json_encode(array('processed'=>0, 'message'=>$message)),
 						200,
 						array('Content-Type'=>'application/json')
 					);
