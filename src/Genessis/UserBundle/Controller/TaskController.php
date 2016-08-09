@@ -140,6 +140,9 @@ class TaskController extends Controller
 			4
 		);
 
+		//CREO EL FORM PARA AGREGAR COMMENTS NUEVOS
+		$comment = new Comment();
+		$commentForm = $this->createCommentForm($comment, $task->getId());
 
 		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
 
@@ -147,7 +150,15 @@ class TaskController extends Controller
 		$user = $task->getUser();
 
 		//OJO, FALTA PASAR pagination Y commentForm
-		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'delete_form'=>$deleteForm->createView()));
+		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form'=>$deleteForm->createView()));
+	}
+
+	private function createCommentForm(Comment $entity, $taskId){
+		$form = $this->createForm(CommentType::class, $entity, array(
+			'action'=>$this->generateUrl('genessis_task_create_comment', array('taskId'=>$taskId)),
+			'method'=>'POST'
+		));
+		return $form;
 	}
 
 	public function editAction($id){

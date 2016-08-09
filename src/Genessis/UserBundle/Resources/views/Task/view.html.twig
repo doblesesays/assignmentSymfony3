@@ -70,4 +70,24 @@ view task view
 			{% endif %}
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="page-header">
+				<h2>{{ 'New comment'|trans }}</h2>
+			</div>
+			{{ form_start(commentForm, {'attr':{'role':'form', 'novalidate':'novalidate'}}) }}
+				<h4 class="text-danger">{{ form_errors(commentForm) }}</h4>
+				<fieldset>
+					<div class="form-group">
+						{{ form_label(commentForm.content) }}
+						{{ form_widget(commentForm.content, {'attr':{'class':'form-control', 'placeholder':'Comment content'}}) }}
+						<span class="text-danger">{{ form_errors(commentForm.content) }}</span>
+					</div>
+				</fieldset>
+				<p>
+					{{ form_widget(commentForm.save, {'label':'Add comment', 'attr':{'class':'btn btn-success'}}) }}
+				</p>
+			{{ form_end(commentForm) }}
+		</div>
+	</div>
 {% endblock %}
