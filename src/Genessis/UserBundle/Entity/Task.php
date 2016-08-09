@@ -4,6 +4,7 @@ namespace Genessis\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Task
@@ -14,6 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Task
 {
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="task")
+    */
+    protected $comments;
 
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
@@ -67,7 +72,6 @@ class Task
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
 
     /**
      * Get id
@@ -236,5 +240,46 @@ class Task
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Genessis\UserBundle\Entity\Comment $comment
+     *
+     * @return Task
+     */
+    public function addComment(\Genessis\UserBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Genessis\UserBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Genessis\UserBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

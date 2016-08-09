@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Genessis\UserBundle\Entity\Task;
 use Genessis\UserBundle\Form\TaskType;
 
+use Genessis\UserBundle\Entity\Comment;
+use Genessis\UserBundle\Form\CommentType;
+// use Genessis\UserBundle\Entity\User;
+
 class TaskController extends Controller
 {
 
@@ -118,7 +122,8 @@ class TaskController extends Controller
 		return $this->render('GenessisUserBundle:Task:add.html.twig', array('form'=>$form->createView()));
 	}
 
-	public function viewAction($id){
+	public function viewAction($id, Request $request){
+		//OBTENGO Y VERIFICO LA TAREA
 		$task = $this->getDoctrine()->getRepository('GenessisUserBundle:Task')->find($id);
 
 		if(!$task){
@@ -126,10 +131,22 @@ class TaskController extends Controller
 			throw $this->createNotFoundException($message);
 		}
 
+		//OBTENGO Y PAGINO LOS COMENTS DE LA TAREA
+		$comments = $this->getDoctrine()->getRepository('GenessisUserBundle:Comment')->findByTask($task->getId());
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+			$comments,
+			$request->query->getInt('page', 1),
+			4
+		);
+
+
 		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
 
+		//OBTENGO EL USUARIO ASIGNADO A LA TAREA
 		$user = $task->getUser();
 
+		//OJO, FALTA PASAR pagination Y commentForm
 		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'delete_form'=>$deleteForm->createView()));
 	}
 

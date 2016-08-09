@@ -341,6 +341,10 @@
                 <source>No tasks asigned</source>
                 <target>Sin tareas asignadas</target>
             </trans-unit>
+            <trans-unit id="80">
+                <source>Leave a comment</source>
+                <target>Dejar un comentario</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

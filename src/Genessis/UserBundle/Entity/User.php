@@ -21,6 +21,11 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 class User implements AdvancedUserInterface, \Serializable
 {
     /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+    */
+    protected $comments;
+
+    /**
     * @ORM\OneToMany(targetEntity="Task", mappedBy="user")
     */
     protected $tasks;
@@ -103,11 +108,6 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
-
-    public function __construct(){
-        $this->tasks = new ArrayCollection();
-        $this->isActive = true;
-    }
 
 
     /**
@@ -436,4 +436,48 @@ class User implements AdvancedUserInterface, \Serializable
     public function isEnabled(){
         return $this->isActive;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \Genessis\UserBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\Genessis\UserBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Genessis\UserBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Genessis\UserBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isActive = true;
+    }
+
 }
