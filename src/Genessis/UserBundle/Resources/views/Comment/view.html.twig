@@ -18,8 +18,8 @@
 							<div class="panel-heading">
 								<strong>{{ comment.user.fullName }}</strong> <span class="text-muted">{{ 'commented'|trans }} {{ comment.createdAt|date('d-m-Y H:i') }}</span>
 								<span class="pull-right" style="display:inherit; margin-top: 0px; margin-bottom: 0px;">
-									<a href="#"><span title="{{ 'edit'|trans }}" class="text-success glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-									<a href="#"><span title="{{ 'delete'|trans }}" class="text-danger glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									<a href="{{ path('genessis_task_edit_comment', {id:comment.id}) }}"><span title="{{ 'edit comment'|trans }}" class="text-success glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+									<a href="#"><span title="{{ 'delete comment'|trans }}" class="text-danger glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 								</span>
 							</div>
 							<div class="panel-body">

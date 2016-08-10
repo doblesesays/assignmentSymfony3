@@ -199,6 +199,50 @@ class TaskController extends Controller
 		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form'=>$deleteForm->createView()));
 	}
 
+	public function editCommentAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$comment = $em->getRepository('GenessisUserBundle:Comment')->find($id);
+
+		if(!$comment){
+			$message = $this->get('translator')->trans('Comment not found');
+			throw $this->createNotFoundException($message);
+		}
+
+		$form = $this->createEditCommentForm($comment);
+
+		return $this->render('GenessisUserBundle:Comment:edit.html.twig', array('comment'=>$comment, 'form'=>$form->createView()));
+	}
+
+	private function createEditCommentForm(Comment $entity){
+		$form = $this->createForm(CommentType::class, $entity, array(
+			'action' => $this->generateUrl('genessis_task_update_comment', array('id'=>$entity->getId())),
+			'method' => 'PUT'
+		));
+		return $form;
+	}
+
+	public function updateCommentAction($id, Request $request){
+		$em = $this->getDoctrine()->getManager();
+		$comment = $em->getRepository('GenessisUserBundle:Comment')->find($id);
+
+		if(!$comment){
+			$message = $this->get('translator')->trans('Comment not found');
+			throw $this->createNotFoundException($message);
+		}
+
+		$form = $this->createEditCommentForm($comment);
+		$form->handleRequest($request);
+
+		if($form->isSubmitted() and $form->isValid()){
+			$em->flush();
+
+			$message = $this->get('translator')->trans('The comment has been modified');
+			$this->addFlash('mensaje', $message);
+			return $this->redirectToRoute('genessis_task_edit_comment', array('id'=>$comment->getId()));
+		}
+		$this->render('GenessisUserBundle:Comment:edit.html.twig', array('comment'=>$comment, 'form'=>$form->createView()));
+	}
+
 	public function editAction($id){
 		$em = $this->getDoctrine()->getManager();
 		$task = $em->getRepository('GenessisUserBundle:Task')->find($id);

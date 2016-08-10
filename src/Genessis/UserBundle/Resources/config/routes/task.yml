@@ -22,9 +22,19 @@ genessis_task_edit:
     path:     /edit/{id}
     defaults: { _controller: GenessisUserBundle:Task:edit }
 
+genessis_task_edit_comment:
+    path:     /edit_comment/{id}
+    defaults: { _controller: GenessisUserBundle:Task:editComment }
+
 genessis_task_update:
     path:     /update/{id}
     defaults: { _controller: GenessisUserBundle:Task:update }
+    requirements:
+        _method:  POST|PUT
+
+genessis_task_update_comment:
+    path:     /update_comment/{id}
+    defaults: { _controller: GenessisUserBundle:Task:updateComment }
     requirements:
         _method:  POST|PUT
 

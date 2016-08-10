@@ -6,7 +6,12 @@ view task view
 {{ parent() }}
 	{{ include('GenessisUserBundle:Comment:messages/success.html.twig') }}
 	<div class="container well">
+		{% if is_granted('ROLE_ADMIN') %}
 		<div class="col-md-9">
+		{% endif %}
+		{% if is_granted('ROLE_USER') %}
+		<div class="col-md-9 col-md-offset-3">
+		{% endif %}
 			<h2>{{ task.title }}</h2>
 			<br>
 			<dl class="row">
@@ -50,26 +55,20 @@ view task view
 				</div>
 			</dl>
 		</div>
+		{% if is_granted('ROLE_ADMIN') %}
 		<div class="col-md-3">
 			<h3>{{'Actions'|trans}}:</h3>
 			<p>
-				<a href="#" class="btn btn-info btn-lg btn-block">
-					<span class="glyphicon glyphicon-comment"></span>
-					{{'Leave a comment'|trans}}
+				<a href="{{ path('genessis_task_edit', {id:task.id}) }}" class="btn btn-success btn-lg btn-block">
+					<span class="glyphicon glyphicon-edit"></span>
+					{{'Edit task'|trans}}
 				</a>
 			</p>
-			{% if is_granted('ROLE_ADMIN') %}
-				<p>
-					<a href="{{ path('genessis_task_edit', {id:task.id}) }}" class="btn btn-success btn-lg btn-block">
-						<span class="glyphicon glyphicon-edit"></span>
-						{{'Edit task'|trans}}
-					</a>
-				</p>
-				<p>
-					{{ include('GenessisUserBundle:Task:forms/form.html.twig', {form:delete_form, message:'Are you sure?'|trans}) }}
-				</p>
-			{% endif %}
+			<p>
+				{{ include('GenessisUserBundle:Task:forms/form.html.twig', {form:delete_form, message:'Are you sure?'|trans}) }}
+			</p>
 		</div>
+		{% endif %}
 	</div>
 	{{ include('GenessisUserBundle:Comment:view.html.twig', {pagination:pagination}) }}
 	{{ include('GenessisUserBundle:Comment:add.html.twig', {commentForm:commentForm}) }}

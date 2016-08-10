@@ -346,6 +346,7 @@
                 <target>Dejar un comentario</target>
             </trans-unit>
             <!-- traduciendo Comments -->
+            <!-- task view.html.twig -->
             <trans-unit id="81">
                 <source>Comments</source>
                 <target>Comentarios</target>
@@ -373,6 +374,40 @@
             <trans-unit id="87">
                 <source>No comments</source>
                 <target>No hay comentarios</target>
+            </trans-unit>
+            <trans-unit id="88">
+                <source>commented</source>
+                <target>comentado el</target>
+            </trans-unit>
+            <trans-unit id="89">
+                <source>edit comment</source>
+                <target>editar comentario</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>delete comment</source>
+                <target>eliminar comentario</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>The comment has been created.</source>
+                <target>Se ha creado el comentario.</target>
+            </trans-unit>
+            <!-- traduciendo Comments -->
+            <!-- comment edit.html.twig -->
+            <trans-unit id="92">
+                <source>Edit comment for task</source>
+                <target>Editar comentario de la tarea</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>Update comment</source>
+                <target>Actualizar comentario</target>
+            </trans-unit>
+            <trans-unit id="94">
+                <source>The comment has been modified</source>
+                <target>Se ha modificado el comentario</target>
+            </trans-unit>
+            <trans-unit id="95">
+                <source>Back to task</source>
+                <target>Volver a tarea</target>
             </trans-unit>
         </body>
     </file>
