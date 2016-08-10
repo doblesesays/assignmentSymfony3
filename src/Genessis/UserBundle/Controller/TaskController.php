@@ -137,7 +137,7 @@ class TaskController extends Controller
 		$pagination = $paginator->paginate(
 			$comments,
 			$request->query->getInt('page', 1),
-			4
+			2
 		);
 
 		//CREO EL FORM PARA AGREGAR COMMENTS NUEVOS
@@ -159,6 +159,44 @@ class TaskController extends Controller
 			'method'=>'POST'
 		));
 		return $form;
+	}
+
+	public function createCommentAction(Request $request, $taskId){
+		$comment = new Comment();
+		$commentForm = $this->createCommentForm($comment, $taskId);
+		$commentForm->handleRequest($request);
+
+		$task = $this->getDoctrine()->getRepository('GenessisUserBundle:Task')->find($taskId);
+
+		if($commentForm->isValid()){
+			$user = $this->get('security.token_storage')->getToken()->getUser();
+			$comment->setTask($task);
+			$comment->setUser($user);
+
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($comment);
+			$em->flush();
+
+			$message = $this->get('translator')->trans('The comment has been created.');
+			$this->addFlash('mensaje', $message);
+			return $this->redirectToRoute('genessis_task_view', array('id'=>$task->getId()));
+		}
+
+		//OBTENGO Y PAGINO LOS COMENTS DE LA TAREA
+		$comments = $this->getDoctrine()->getRepository('GenessisUserBundle:Comment')->findByTask($task->getId());
+		$paginator = $this->get('knp_paginator');
+		$pagination = $paginator->paginate(
+			$comments,
+			$request->query->getInt('page', 1),
+			2
+		);
+
+		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
+
+		//OBTENGO EL USUARIO ASIGNADO A LA TAREA
+		$user = $task->getUser();
+
+		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form'=>$deleteForm->createView()));
 	}
 
 	public function editAction($id){

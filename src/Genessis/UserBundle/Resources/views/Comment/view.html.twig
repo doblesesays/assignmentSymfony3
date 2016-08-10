@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="col-md-12">
+		<div class="page-header margin-none">
+			<h3 class="padding-none">{{'Comments'|trans}}</h3>
+		</div>
+		<div>
+			<p>
+				{{'Total comments:'|trans}} <span id="total">{{ pagination.getTotalItemCount }}</span>
+			</p>
+			{% if not pagination|length %}
+				<h4>{{ 'No comments'|trans}}</h4>
+			{% endif %}
+			{% if pagination|length %}
+				<div class="container">
+				{% for comment in pagination %}
+					<div class="col-md-5 col-md-offset-3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<strong>{{ comment.user.fullName }}</strong> <span class="text-muted">{{ 'commented'|trans }} {{ comment.createdAt|date('d-m-Y H:i') }}</span>
+								<span class="pull-right" style="display:inherit; margin-top: 0px; margin-bottom: 0px;">
+									<a href="#"><span title="{{ 'edit'|trans }}" class="text-success glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+									<a href="#"><span title="{{ 'delete'|trans }}" class="text-danger glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+								</span>
+							</div>
+							<div class="panel-body">
+								{{ comment.content }}
+							</div><!-- /panel-body -->
+						</div><!-- /panel panel-default -->
+					</div><!-- /col-sm-5 -->
+				{% endfor %}
+				</div>
+			{% endif %}
+			{# display navigation #}
+			<div class="navigation">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+		</div>
+	</div>
+</div>

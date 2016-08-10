@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="comments")
  * @ORM\Entity(repositoryClass="Genessis\UserBundle\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
@@ -17,14 +18,12 @@ class Comment
     /**
     * @ORM\ManyToOne(targetEntity="Task", inversedBy="comments")
     * @ORM\JoinColumn(name="task_id", referencedColumnName="id", onDelete="CASCADE")
-    * @Assert\NotBlank()
     */
     protected $task;
 
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-    * @Assert\NotBlank()
     */
     protected $user;
 
@@ -49,7 +48,6 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
-     * @Assert\NotBlank()
      */
     private $createdAt;
 
@@ -57,7 +55,6 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime")
-     * @Assert\NotBlank()
      */
     private $updatedAt;
 

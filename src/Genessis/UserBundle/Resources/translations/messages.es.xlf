@@ -345,6 +345,35 @@
                 <source>Leave a comment</source>
                 <target>Dejar un comentario</target>
             </trans-unit>
+            <!-- traduciendo Comments -->
+            <trans-unit id="81">
+                <source>Comments</source>
+                <target>Comentarios</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>Total comments:</source>
+                <target>Cantidad de comentarios:</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>New comment</source>
+                <target>Nuevo comentario</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>Content</source>
+                <target>Contenido</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>Comment content</source>
+                <target>Contenido del comentario</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>Add comment</source>
+                <target>Agregar comentario</target>
+            </trans-unit>
+            <trans-unit id="87">
+                <source>No comments</source>
+                <target>No hay comentarios</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

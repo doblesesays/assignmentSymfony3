@@ -14,7 +14,7 @@ genessis_task_create:
 
 genessis_task_create_comment:
     path:     /create_comment/{taskId}
-    defaults: { _controller: GenessisUserBundle:Comment:create }
+    defaults: { _controller: GenessisUserBundle:Task:createComment }
     requirements:
         _method:  POST
 
