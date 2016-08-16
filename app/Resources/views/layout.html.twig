@@ -13,6 +13,8 @@
         {% block body %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 {{ include('menu.html.twig') }}
+            {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                {{ include('locale.html.twig') }}
             {% endif %}
         {% endblock %}
         {% block javascripts %}

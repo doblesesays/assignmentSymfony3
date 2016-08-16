@@ -14,16 +14,16 @@ security:
             anonymous: ~
             http_basic: ~
             form_login:
-                login_path: /login
+                login_path: /%locale%/login
                 check_path: /login_check
                 # field names for the username and password fields:
                 username_parameter: _username
                 password_parameter: _password
-                # default_target_path: default_security_target
-                #always_use_default_target_path: true
+                always_use_default_target_path: true
+                default_target_path: genessis_user_homepage
             logout:
                 path: /logout
-                target: /login            
+                target: /%locale%/login            
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -31,6 +31,7 @@ security:
 
         main:
             anonymous: ~
+            # pattern: ^/
             # activate different ways to authenticate
 
             # http_basic: ~

@@ -16,6 +16,7 @@ class TaskController extends Controller
 {
 
 	public function indexAction(Request $request){
+
 		$em = $this->getDoctrine()->getManager();
 		$dql = "SELECT t FROM GenessisUserBundle:Task t ORDER BY t.id DESC";
 		$tasks = $em->createQuery($dql);

@@ -1,20 +1,20 @@
 genessis_user_user:
   resource: "@GenessisUserBundle/Resources/config/routes/user.yml"
-  prefix: /user
+  prefix: /{_locale}/user
 
 genessis_user_task:
   resource: "@GenessisUserBundle/Resources/config/routes/task.yml"
-  prefix: /task
+  prefix: /{_locale}/task
 
 # AUTHENTICATION
 
 genessis_user_homepage:
-    path:     /
+    path:     /{_locale}/
     defaults: { _controller: GenessisUserBundle:User:home }
 
 genessis_user_login:
-    path:     /login
-    defaults: { _controller: GenessisUserBundle:Security:login }
+    path:     /{_locale}/login
+    defaults: { _controller: GenessisUserBundle:Security:login, _locale: en }
 
 genessis_user_login_check:
     path:     /login_check
