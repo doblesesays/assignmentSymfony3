@@ -24,12 +24,12 @@ index view
 			<p>
 				{% trans %}Total records:{% endtrans %} <span id="total">{{ pagination.getTotalItemCount }}</span>
 			</p>
-			<form method="get" action="" class="form-inline" role="search">
+			{# <form method="get" action="" class="form-inline" role="search">
 				<div class="form-group">
 					<input type="text" name="query" value="{{ app.request.get('query') }}" class="form-control" placeholder="{{ 'Search user'|trans }}">
 				</div>
 				<input type="submit" value="{{ 'Search'|trans }}" class="btn btn-default">
-			</form>
+			</form> #}
 			<br>
 			{% if not pagination|length %}
 				<h2>{{ 'No search results'|trans}}</h2>

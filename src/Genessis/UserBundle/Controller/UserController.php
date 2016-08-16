@@ -23,16 +23,20 @@ class UserController extends Controller
     public function indexAction(Request $request)
     {
 
-    	$searchQuery = $request->get('query');
+    	// $searchQuery = $request->get('query');
 
-    	if(!empty($searchQuery)){
-    		$finder = $this->container->get('fos_elastica.finder.app.user');
-    		$users = $finder->createPaginatorAdapter($searchQuery);
-    	}else{
-    		$em = $this->getDoctrine()->getManager();
-       		$dql = "SELECT u FROM GenessisUserBundle:User u ORDER BY u.id DESC";
-       		$users = $em->createQuery($dql);
-    	}
+    	// if(!empty($searchQuery)){
+    	// 	$finder = $this->container->get('fos_elastica.finder.app.user');
+    	// 	$users = $finder->createPaginatorAdapter($searchQuery);
+    	// }else{
+    	// 	$em = $this->getDoctrine()->getManager();
+     //   		$dql = "SELECT u FROM GenessisUserBundle:User u ORDER BY u.id DESC";
+     //   		$users = $em->createQuery($dql);
+    	// }
+
+    	$em = $this->getDoctrine()->getManager();
+       	$dql = "SELECT u FROM GenessisUserBundle:User u ORDER BY u.id DESC";
+       	$users = $em->createQuery($dql);
 
        	$paginator = $this->get('knp_paginator');
        	$pagination = $paginator->paginate(
