@@ -14,12 +14,12 @@
 				<div class="container">
 				{% for comment in pagination %}
 					<div class="col-md-5 col-md-offset-3">
-						<div class="panel panel-default">
+						<div class="panel panel-default data" data-id="{{ comment.id }}">
 							<div class="panel-heading">
 								<strong>{{ comment.user.fullName }}</strong> <span class="text-muted">{{ 'commented'|trans }} {{ comment.createdAt|date('d-m-Y H:i') }}</span>
 								<span class="pull-right" style="display:inherit; margin-top: 0px; margin-bottom: 0px;">
 									<a href="{{ path('genessis_task_edit_comment', {id:comment.id}) }}"><span title="{{ 'edit comment'|trans }}" class="text-success glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-									<a href="#"><span title="{{ 'delete comment'|trans }}" class="text-danger glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									<a href="" class="btn-delete-comment"><span title="{{ 'delete comment'|trans }}" class="text-danger glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 								</span>
 							</div>
 							<div class="panel-body">

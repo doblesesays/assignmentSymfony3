@@ -409,6 +409,18 @@
                 <source>Back to task</source>
                 <target>Volver a tarea</target>
             </trans-unit>
+            <trans-unit id="96">
+                <source>The comment its not made by you</source>
+                <target>El comentario no es tuyo</target>
+            </trans-unit>
+            <trans-unit id="97">
+                <source>The comment could not be deleted.</source>
+                <target>No se pudo eliminar el comentario.</target>
+            </trans-unit>
+            <trans-unit id="98">
+                <source>The comment has been deleted.</source>
+                <target>Se ha eliminado el comentario.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

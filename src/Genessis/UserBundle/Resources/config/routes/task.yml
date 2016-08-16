@@ -19,7 +19,7 @@ genessis_task_create_comment:
         _method:  POST
 
 genessis_task_edit:
-    path:     /edit/{id}
+    path:     /edit_task/{id}
     defaults: { _controller: GenessisUserBundle:Task:edit }
 
 genessis_task_edit_comment:
@@ -43,8 +43,14 @@ genessis_task_view:
     defaults: { _controller: GenessisUserBundle:Task:view }
 
 genessis_task_delete:
-    path:     /delete/{id}
+    path:     /delete_task/{id}
     defaults: { _controller: GenessisUserBundle:Task:delete }
+    requirements:
+        _method:  POST|DELETE
+
+genessis_task_delete_comment:
+    path:     /delete_comment/{id}
+    defaults: { _controller: GenessisUserBundle:Task:deleteComment }
     requirements:
         _method:  POST|DELETE
 

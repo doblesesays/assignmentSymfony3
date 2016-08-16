@@ -50,9 +50,10 @@ security:
         - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/task/index, roles: ROLE_ADMIN }
         - { path: ^/task/add, roles: ROLE_ADMIN }
-        - { path: ^/task/edit, roles: ROLE_ADMIN }
-        - { path: ^/task/view,  roles: [ROLE_ADMIN, ROLE_USER] }
-        - { path: ^/task/create_comment,  roles: [ROLE_ADMIN, ROLE_USER] }       
-        - { path: ^/task/delete, roles: ROLE_ADMIN }       
+        - { path: ^/task/edit_task, roles: ROLE_ADMIN }
+        - { path: ^/task/edit_comment,  roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/task/view,  roles: [ROLE_ADMIN, ROLE_USER] }       
+        - { path: ^/task/delete_task, roles: ROLE_ADMIN }
+        - { path: ^/task/delete_comment,  roles: [ROLE_ADMIN, ROLE_USER] }       
         - { path: ^/task/custom, roles: ROLE_USER }
         - { path: ^/task/process, roles: ROLE_USER }

@@ -5,6 +5,7 @@ view task view
 {% block body %}
 {{ parent() }}
 	{{ include('GenessisUserBundle:Comment:messages/success.html.twig') }}
+	{{ include('GenessisUserBundle:Comment:messages/danger.html.twig') }}
 	<div class="container well">
 		{% if is_granted('ROLE_ADMIN') %}
 		<div class="col-md-9">
@@ -72,4 +73,9 @@ view task view
 	</div>
 	{{ include('GenessisUserBundle:Comment:view.html.twig', {pagination:pagination}) }}
 	{{ include('GenessisUserBundle:Comment:add.html.twig', {commentForm:commentForm}) }}
+	{{ include('GenessisUserBundle:Comment:forms/form.html.twig', {form:delete_form_comment, message:'Are you sure?'|trans, id:'form-delete-comment', with_submit:false}) }}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('bundles/genessisuser/js/delete-comment.js') }}"></script>
 {% endblock %}

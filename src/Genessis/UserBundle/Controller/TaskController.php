@@ -146,11 +146,13 @@ class TaskController extends Controller
 
 		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
 
+		$deleteFormComment = $this->createCustomForm(':COMMENT_ID', 'DELETE', 'genessis_task_delete_comment');
+
 		//OBTENGO EL USUARIO ASIGNADO A LA TAREA
 		$user = $task->getUser();
 
 		//OJO, FALTA PASAR pagination Y commentForm
-		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form'=>$deleteForm->createView()));
+		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form_comment'=>$deleteFormComment->createView(), 'delete_form'=>$deleteForm->createView()));
 	}
 
 	private function createCommentForm(Comment $entity, $taskId){
@@ -208,9 +210,16 @@ class TaskController extends Controller
 			throw $this->createNotFoundException($message);
 		}
 
-		$form = $this->createEditCommentForm($comment);
+		if ($comment->getUser()->getId() == $this->get('security.token_storage')->getToken()->getUser()->getId()){
 
-		return $this->render('GenessisUserBundle:Comment:edit.html.twig', array('comment'=>$comment, 'form'=>$form->createView()));
+			$form = $this->createEditCommentForm($comment);
+
+			return $this->render('GenessisUserBundle:Comment:edit.html.twig', array('comment'=>$comment, 'form'=>$form->createView()));
+		}
+		
+		$message = $this->get('translator')->trans('The comment its not made by you');
+		$this->addFlash('error', $message);
+		return $this->redirectToRoute('genessis_task_view', array('id'=>$comment->getTask()->getId()));
 	}
 
 	private function createEditCommentForm(Comment $entity){
@@ -240,7 +249,59 @@ class TaskController extends Controller
 			$this->addFlash('mensaje', $message);
 			return $this->redirectToRoute('genessis_task_edit_comment', array('id'=>$comment->getId()));
 		}
+
 		$this->render('GenessisUserBundle:Comment:edit.html.twig', array('comment'=>$comment, 'form'=>$form->createView()));
+	}
+
+	public function deleteCommentAction($id, Request $request){
+		$em = $this->getDoctrine()->getManager();
+		$comment = $em->getRepository('GenessisUserBundle:Comment')->find($id);
+
+		if(!$comment){
+    		$messageException = $this->get('translator')->trans('Comment not found.');
+    		throw $this->createNotFoundException($messageException);
+    	}
+
+    	$allComments = $em->getRepository('GenessisUserBundle:Comment')->findAll();
+    	$countComments = count($allComments);
+
+    	$form = $this->createCustomForm($comment->getId(), 'DELETE', 'genessis_task_delete_comment');
+    	$form->handleRequest($request);
+
+    	if ($form->isSubmitted() and $form->isValid()){
+    		if ($request->isXMLHttpRequest()){
+    			$res = $this->deleteComment($comment->getUser()->getRole(), $em, $comment);
+
+    			return new response(
+    				json_encode(array('removed'=>$res['removed'], 'message'=>$res['message'], 'countComments'=>$countComments)),
+    				200,
+    				array('Content-Type'=>'Application/json')
+    			);
+    		}
+
+    		$res = $this->deleteComment($comment->getUser()->getRole(), $em, $comment);
+
+    		$this->addFlash($res['alert'], $res['message']);
+
+    		return $this->redirectToRoute('genessis_task_view', array('id'=>$comment->getTask()->getId()));
+    	}
+	}
+
+	private function deleteComment($role, $em, $comment){
+		if($role == 'ROLE_USER' or ($role == 'ROLE_ADMIN' and $this->get('security.token_storage')->getToken()->getUser()->getRole() == 'ROLE_ADMIN')){
+   			$em->remove($comment);
+   			$em->flush();
+
+   			$message = $this->get('translator')->trans('The comment has been deleted.');
+   			$removed = 1;
+   			$alert = 'mensaje';
+   		}elseif ($role == 'ROLE_ADMIN' and $this->get('security.token_storage')->getToken()->getUser()->getRole() == 'ROLE_USER'){
+   			$message = $this->get('translator')->trans('The comment could not be deleted.');
+   			$removed = 0;
+   			$alert = 'error';
+   		}
+
+   		return array('removed'=>$removed, 'message'=>$message, 'alert'=>$alert);
 	}
 
 	public function editAction($id){
