@@ -55,7 +55,7 @@ class CommentController extends Controller
 		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form'=>$deleteForm->createView()));
 	}
 
-	public function createCommentForm(Comment $entity, $taskId){
+	private function createCommentForm(Comment $entity, $taskId){
 		$form = $this->createForm(CommentType::class, $entity, array(
 			'action'=>$this->generateUrl('genessis_task_create_comment', array('taskId'=>$taskId)),
 			'method'=>'POST'

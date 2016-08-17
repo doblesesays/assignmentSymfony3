@@ -145,7 +145,7 @@ class TaskController extends Controller
 
 		//CREO EL FORM PARA AGREGAR COMMENTS NUEVOS
 		$comment = new Comment();
-		$commentForm = CommentController::createCommentForm($comment, $task->getId());
+		$commentForm = $this->createCommentForm($comment, $task->getId());
 
 		$deleteForm = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
 
@@ -157,13 +157,13 @@ class TaskController extends Controller
 		return $this->render('GenessisUserBundle:Task:view.html.twig', array('task'=>$task, 'user'=>$user, 'pagination'=>$pagination, 'commentForm'=>$commentForm->createView(), 'delete_form_comment'=>$deleteFormComment->createView(), 'delete_form'=>$deleteForm->createView()));
 	}
 
-	// public function createCommentForm(Comment $entity, $taskId){
-	// 	$form = $this->createForm(CommentType::class, $entity, array(
-	// 		'action'=>$this->generateUrl('genessis_task_create_comment', array('taskId'=>$taskId)),
-	// 		'method'=>'POST'
-	// 	));
-	// 	return $form;
-	// }
+	private function createCommentForm(Comment $entity, $taskId){
+		$form = $this->createForm(CommentType::class, $entity, array(
+			'action'=>$this->generateUrl('genessis_task_create_comment', array('taskId'=>$taskId)),
+			'method'=>'POST'
+		));
+		return $form;
+	}
 
 	// public function createCommentAction(Request $request, $taskId){
 	// 	$comment = new Comment();

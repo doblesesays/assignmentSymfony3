@@ -12,29 +12,13 @@ genessis_task_create:
     requirements:
         _method:  POST
 
-genessis_task_create_comment:
-    path:     /create_comment/{taskId}
-    defaults: { _controller: GenessisUserBundle:Comment:createComment }
-    requirements:
-        _method:  POST
-
 genessis_task_edit:
     path:     /edit_task/{id}
     defaults: { _controller: GenessisUserBundle:Task:edit }
 
-genessis_task_edit_comment:
-    path:     /edit_comment/{id}
-    defaults: { _controller: GenessisUserBundle:Comment:editComment }
-
 genessis_task_update:
     path:     /update/{id}
     defaults: { _controller: GenessisUserBundle:Task:update }
-    requirements:
-        _method:  POST|PUT
-
-genessis_task_update_comment:
-    path:     /update_comment/{id}
-    defaults: { _controller: GenessisUserBundle:Comment:updateComment }
     requirements:
         _method:  POST|PUT
 
@@ -45,12 +29,6 @@ genessis_task_view:
 genessis_task_delete:
     path:     /delete_task/{id}
     defaults: { _controller: GenessisUserBundle:Task:delete }
-    requirements:
-        _method:  POST|DELETE
-
-genessis_task_delete_comment:
-    path:     /delete_comment/{id}
-    defaults: { _controller: GenessisUserBundle:Comment:deleteComment }
     requirements:
         _method:  POST|DELETE
 
