@@ -6,6 +6,10 @@ genessis_user_task:
   resource: "@GenessisUserBundle/Resources/config/routes/task.yml"
   prefix: /{_locale}/task
 
+genessis_user_task_comment:
+  resource: "@GenessisUserBundle/Resources/config/routes/comment.yml"
+  prefix: /{_locale}/task
+
 # AUTHENTICATION
 
 genessis_user_homepage:
