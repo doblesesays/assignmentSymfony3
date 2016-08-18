@@ -21,6 +21,14 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 class User implements AdvancedUserInterface, \Serializable
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", columnDefinition="ENUM('es', 'en')", length=5)
+     * @Assert\Locale()
+     */
+    protected $locale;
+
+    /**
     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
     */
     protected $comments;
@@ -351,6 +359,14 @@ class User implements AdvancedUserInterface, \Serializable
         $this->updatedAt = new \DateTime();
     }
 
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setLocaleValue(){
+        $this->locale = 'en';
+    }
+
     public function getRoles(){
         return array($this->role);
     }
@@ -480,4 +496,28 @@ class User implements AdvancedUserInterface, \Serializable
         $this->isActive = true;
     }
 
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     *
+     * @return User
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
 }

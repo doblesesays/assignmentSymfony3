@@ -16,8 +16,9 @@ use Genessis\UserBundle\Entity\Task;
 class UserController extends Controller
 {
 
-	public function homeAction(){
-		return $this->render('GenessisUserBundle:User:home.html.twig');
+	public function homeAction(Request $request){
+
+        return $this->render('GenessisUserBundle:User:home.html.twig');
 	}
 
     public function indexAction(Request $request)

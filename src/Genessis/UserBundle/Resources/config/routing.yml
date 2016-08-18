@@ -14,7 +14,9 @@ genessis_user_task_comment:
 
 genessis_user_homepage:
     path:     /{_locale}/
-    defaults: { _controller: GenessisUserBundle:User:home }
+    defaults: { _controller: GenessisUserBundle:User:home, _locale: en }
+    requirements:
+      _locale:  en|es
 
 genessis_user_login:
     path:     /{_locale}/login

@@ -23,8 +23,10 @@ class LocaleListener extends EventSuscriberInterface
 		}
 	}
 
+
 	if ($locale = $request->attributes->get('_locale')) {
 		$request->getSession()->set('_locale', $locale);
+		//aqui deberia actualizar la entidad:user:locale
 	}else{
 		$request->setlocale($request->getSession()->get('_locale' , $this->defaultLocale));
 	}
