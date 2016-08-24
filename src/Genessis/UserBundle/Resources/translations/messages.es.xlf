@@ -421,6 +421,22 @@
                 <source>The comment has been deleted.</source>
                 <target>Se ha eliminado el comentario.</target>
             </trans-unit>
+            <trans-unit id="99">
+                <source>Language</source>
+                <target>Lenguaje</target>
+            </trans-unit>
+            <trans-unit id="100">
+                <source>English</source>
+                <target>Inglés</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>Spanish</source>
+                <target>Español</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>All okey</source>
+                <target>Correcto</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

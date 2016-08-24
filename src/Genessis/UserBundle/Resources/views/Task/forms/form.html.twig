@@ -1,15 +1,18 @@
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'class' :'form_task'} }) }}
 	{{ form_widget(form) }}
-	<input type="buttom" value="{{ 'Delete task'|trans }}" class="btn btn-lg btn-block btn-danger" onclick="confirmDelete();">
+	{% if with_submit is not defined or with_submit == true %}
+		<input type="buttom" value="{{ 'Delete task'|trans }}" class="btn btn-lg btn-block btn-danger" onclick="confirmDeleteTask();">
+	{% endif %}
 {{ form_end(form) }}
 
 <script>
 	var message = '{{ message }}';
 
-	function confirmDelete(){
+	function confirmDeleteTask(){
 		bootbox.confirm(message, function(result){
 			if(result){
-				document.form.submit();
+				// document.form.submit();
+				$(".form_task").submit();
 			}
 		});
 	} 

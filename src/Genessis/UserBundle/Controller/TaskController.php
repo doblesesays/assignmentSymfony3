@@ -359,6 +359,7 @@ class TaskController extends Controller
 			throw $this->createNotFoundException($message);
 		}
 		$form = $this->createCustomForm($task->getId(), 'DELETE', 'genessis_task_delete');
+		
 		$form->handleRequest($request);
 
 		if($form->isSubmitted() and $form->isValid()){
